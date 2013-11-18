@@ -4,8 +4,8 @@ require 'csv'
 
 #Constants / Settings
 odd_beers       = ["Redhook Nut Brown", "Redbook IPA", "Redhook Hefe-weizen", "Redhook ESB",
-                  "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
-                    "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
+                   "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
+                   "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
 
 firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light',
                    'Coors Light', 'Corona Light', 'Heineken Light', 'Miller Lite',
@@ -27,6 +27,7 @@ drinkers = DB[:drinkers]
 likes = DB[:likes]
 favorite = DB[:favorite]
 firstbeer = DB[:firstbeer]
+beerDB = DB[:beers]
 
 #Populate database
 id = 1;
@@ -54,7 +55,7 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
     entry = {:drinker_id => user[:id], :beer => firstbeer_array.sample,
              :year => (2013 - (user[:age] - 21))}
     firstbeer.insert(entry)
-    
+
     fbeer = nil
     if(user[:gender] = 'female')
       if(user[:age] < 30)
@@ -79,7 +80,7 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
         fbeer = farray.sample
       end
     end
-  entry = {:drinker_id => user[:id], :beer => fbeer}
-  favoritebeer.insert(entry)
+    entry = {:drinker_id => user[:id], :beer => fbeer}
+    favoritebeer.insert(entry)
   end
 end
