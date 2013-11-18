@@ -52,7 +52,34 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
     end
   else
     entry = {:drinker_id => user[:id], :beer => firstbeer_array.sample,
-             :year => (2013 - (n.age - 21))}
+             :year => (2013 - (user[:age] - 21))}
     firstbeer.insert(entry)
+    
+    fbeer = nil
+    if(user[:gender] = 'female')
+      if(user[:age] < 30)
+        farray = beerDB.select(:name).where{ibu < 25}
+        fbeer = farray.sample
+      elsif (user[:age] < 40)
+        farray = beerDB.select(:name).where{ibu < 21}
+        fbeer = farray.sample
+      else
+        farray = beerDB.select(:name).where{ibu < 16}
+        fbeer = farray.sample
+      end
+    else
+      if(user[:age] < 30)
+        farray = beerDB.select(:name).where{ibu > 25}
+        fbeer = farray.sample
+      elsif (user[:age] < 40)
+        farray = beerDB.select(:name).where{ibu > 34}
+        fbeer = farray.sample
+      else
+        farray = beerDB.select(:name).where{ibu > 55}
+        fbeer = farray.sample
+      end
+    end
+  entry = {:drinker_id => user[:id], :beer => fbeer}
+  favoritebeer.insert(entry)
   end
 end
