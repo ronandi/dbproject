@@ -49,7 +49,12 @@ CSV.foreach(beers_csv_file, :headers => :first_row) do |row|
   beers_array << Beer.new(row[0], row[1], row[2], row[3], row[4], row[5])
 end
 
-firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light', 'Coors Light', 'Corona Light', 'Heineken Light', 'Miller Lite', 'Yuengling Light']
+firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light',
+                   'Coors Light', 'Corona Light', 'Heineken Light', 'Miller Lite',
+                   'Yuengling Light']
+
+
+#set up first beers
 drinker_array.each do |n|
   if(n.age >= 22 && n.age <= 27)
     next
@@ -58,6 +63,7 @@ drinker_array.each do |n|
   firstbeer.insert(entry)
 end
 
+#set up favorite beers
 drinker_array.each do |n|
   if(n.age >= 22 && n.age <= 27)
     next
