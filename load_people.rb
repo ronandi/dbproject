@@ -37,11 +37,13 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
           :gender => row[2], :address => row[3],
           :city => row[4], :phone => row[5],
           :age => 2013 - row[6].split('/')[2].to_i}
-  drinkers.insert(user)
+  #drinkers.insert(user)
   id += 1;
 
   #If hipster then they like weird stuff
   if (user[:age] >= 22 && user[:age] <= 27 && current_hipsters < hipster_count)
+    current_hipsters += 1
+    firstbeer.insert({ :drinker_id => user[:id], :beer => odd_beers.sample})
     favorite_beer = odd_beers.sample
     favorite.insert({ :drinker_id => user[:id], :beer => favorite_beer })
     likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
@@ -60,27 +62,27 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
     if(user[:gender] = 'female')
       if(user[:age] < 30)
         farray = beerDB.select(:name).where{ibu < 25}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       elsif (user[:age] < 40)
         farray = beerDB.select(:name).where{ibu < 21}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       else
         farray = beerDB.select(:name).where{ibu < 16}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       end
     else
       if(user[:age] < 30)
         farray = beerDB.select(:name).where{ibu > 25}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       elsif (user[:age] < 40)
         farray = beerDB.select(:name).where{ibu > 34}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       else
         farray = beerDB.select(:name).where{ibu > 55}
-        fbeer = farray.sample
+        fbeer = farray.to_a.sample[:name]
       end
     end
     entry = {:drinker_id => user[:id], :beer => fbeer}
-    favoritebeer.insert(entry)
+    favorite.insert(entry)
   end
 end
