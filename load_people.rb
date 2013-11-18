@@ -3,9 +3,9 @@ require 'sequel'
 require 'csv'
 
 #Constants / Settings
-odd_beers = ["Redhook Nut Brown", "Redbook IPA", "Redhook Hefe-weizen", "Redhook ESB",
-             "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
-             "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
+odd_beers       = ["Redhook Nut Brown", "Redbook IPA", "Redhook Hefe-weizen", "Redhook ESB",
+                  "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
+                    "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
 
 firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light',
                    'Coors Light', 'Corona Light', 'Heineken Light', 'Miller Lite',
@@ -26,7 +26,9 @@ DB = Sequel.connect("mysql2://#{user}:#{pass}@cs336-24.cs.rutgers.edu/project")
 drinkers = DB[:drinkers]
 likes = DB[:likes]
 favorite = DB[:favorite]
+firstbeer = DB[:firstbeer]
 
+#Populate database
 id = 1;
 CSV.foreach(csv_file, :headers => :first_row) do |row|
   hipster = false
