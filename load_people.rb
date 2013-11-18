@@ -7,6 +7,10 @@ odd_beers = ["Redhook Nut Brown", "Redbook IPA", "Redhook Hefe-weizen", "Redhook
              "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
              "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
 
+firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light',
+                   'Coors Light', 'Corona Light', 'Heineken Light', 'Miller Lite',
+                   'Yuengling Light']
+
 csv_file = 'names.csv'
 total_count = 10_000
 hipster_rate = 0.25
@@ -45,6 +49,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       likes.insert({ :drinker_id => user[:id], :beer => beer })
     end
   else
-    #TODO add normal favorite and likes
+    entry = {:drinker_id => user[:id], :beer => firstbeer_array.sample,
+             :year => (2013 - (n.age - 21))}
+    firstbeer.insert(entry)
   end
 end
