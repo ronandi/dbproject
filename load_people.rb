@@ -66,8 +66,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       if(user[:age] < 30)
         farray = beerDB.select(:name).where{ibu < 25}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv < 5)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv < 5}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
@@ -78,8 +78,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       elsif (user[:age] < 40)
         farray = beerDB.select(:name).where{ibu < 21}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv < 4.6)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv < 4.6}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
@@ -90,8 +90,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       else
         farray = beerDB.select(:name).where{ibu < 16}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv < 4.3)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv < 4.3}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
@@ -104,8 +104,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       if(user[:age] < 30)
         farray = beerDB.select(:name).where{ibu > 25}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv > 4.6)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv > 4.6}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
@@ -116,8 +116,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       elsif (user[:age] < 40)
         farray = beerDB.select(:name).where{ibu > 34}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv > 4.9)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv > 4.9}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
@@ -128,8 +128,8 @@ CSV.foreach(csv_file, :headers => :first_row) do |row|
       else
         farray = beerDB.select(:name).where{ibu > 55}
         favorite_beer = farray.to_a.sample[:name]
-        larray = beerDB.select(:name).where(abv > 5.1)
-        like_array = larray.to_a[:name]
+        larray = beerDB.select(:name).where{abv > 5.1}
+        like_array = larray.map { |beer| beer[:name] }
         likes.insert({ :drinker_id => user[:id], :beer => favorite_beer })
         new_beers = like_array - [favorite_beer]
         rand(1..6).times do
