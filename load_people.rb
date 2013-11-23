@@ -3,7 +3,7 @@ require 'sequel'
 require 'csv'
 
 #Constants / Settings
-odd_beers       = ["Redhook Nut Brown", "Redhook IPA", "Redhook Hefe-weizen", "Redhook ESB",
+odd_beers       = ["Redhook Nut Brown", "Redhook IPA", "Redhook ESB",
                    "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
                    "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
 
@@ -12,7 +12,7 @@ firstbeer_array = ['Budweiser Light', 'Budweiser Light Platinum', 'Busch Light',
                    'Yuengling Light']
 
 csv_file = 'data/names.csv'
-hipster_count = 250
+hipster_count = 330
 current_hipsters = 0
 user = ENV['cs336user'] || "Your user here"
 pass = ENV['cs336pass'] || "Your pass here"
