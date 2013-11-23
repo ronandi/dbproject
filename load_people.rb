@@ -3,7 +3,7 @@ require 'sequel'
 require 'csv'
 
 #Constants / Settings
-odd_beers       = ["Redhook Nut Brown", "Redbook IPA", "Redhook Hefe-weizen", "Redhook ESB",
+odd_beers       = ["Redhook Nut Brown", "Redhook IPA", "Redhook Hefe-weizen", "Redhook ESB",
                    "Redhook Blonde Ale", "Stone Imperial Russian Stout", "Serpents Stout",
                    "Old Rasputin Russian Imperial Stout", "Guiness Extra Stout", "Dragon Stout"]
 
